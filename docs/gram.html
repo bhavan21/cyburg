@@ -1,0 +1,83 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module gram</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>gram</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/bhavan/Desktop/BTP/cyburg/gram.py">/home/bhavan/Desktop/BTP/cyburg/gram.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="globals.html">globals</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-p_blist1"><strong>p_blist1</strong></a>(p)</dt><dd><tt>blist&nbsp;:&nbsp;empty</tt></dd></dl>
+ <dl><dt><a name="-p_blist2"><strong>p_blist2</strong></a>(p)</dt><dd><tt>blist&nbsp;:&nbsp;blist&nbsp;ID&nbsp;'='&nbsp;INT</tt></dd></dl>
+ <dl><dt><a name="-p_cost1"><strong>p_cost1</strong></a>(p)</dt><dd><tt>cost&nbsp;:&nbsp;empty</tt></dd></dl>
+ <dl><dt><a name="-p_cost2"><strong>p_cost2</strong></a>(p)</dt><dd><tt>cost&nbsp;:&nbsp;'('&nbsp;INT&nbsp;')'</tt></dd></dl>
+ <dl><dt><a name="-p_decl1"><strong>p_decl1</strong></a>(p)</dt><dd><tt>decl&nbsp;:&nbsp;TERMINAL&nbsp;blist&nbsp;'\n'</tt></dd></dl>
+ <dl><dt><a name="-p_decl2"><strong>p_decl2</strong></a>(p)</dt><dd><tt>decl&nbsp;:&nbsp;START&nbsp;lhs&nbsp;'\n'</tt></dd></dl>
+ <dl><dt><a name="-p_decl3"><strong>p_decl3</strong></a>(p)</dt><dd><tt>decl&nbsp;:&nbsp;'\n'</tt></dd></dl>
+ <dl><dt><a name="-p_decl4"><strong>p_decl4</strong></a>(p)</dt><dd><tt>decl&nbsp;:&nbsp;error&nbsp;'\n'</tt></dd></dl>
+ <dl><dt><a name="-p_decls1"><strong>p_decls1</strong></a>(p)</dt><dd><tt>decls&nbsp;:&nbsp;empty</tt></dd></dl>
+ <dl><dt><a name="-p_decls2"><strong>p_decls2</strong></a>(p)</dt><dd><tt>decls&nbsp;:&nbsp;decls&nbsp;decl</tt></dd></dl>
+ <dl><dt><a name="-p_empty"><strong>p_empty</strong></a>(p)</dt><dd><tt>empty&nbsp;:</tt></dd></dl>
+ <dl><dt><a name="-p_error"><strong>p_error</strong></a>(t)</dt></dl>
+ <dl><dt><a name="-p_lhs"><strong>p_lhs</strong></a>(p)</dt><dd><tt>lhs&nbsp;:&nbsp;ID</tt></dd></dl>
+ <dl><dt><a name="-p_rules1"><strong>p_rules1</strong></a>(p)</dt><dd><tt>rules&nbsp;:&nbsp;empty</tt></dd></dl>
+ <dl><dt><a name="-p_rules2"><strong>p_rules2</strong></a>(p)</dt><dd><tt>rules&nbsp;:&nbsp;rules&nbsp;lhs&nbsp;':'&nbsp;tree&nbsp;'='&nbsp;INT&nbsp;cost&nbsp;';'&nbsp;'\n'</tt></dd></dl>
+ <dl><dt><a name="-p_rules3"><strong>p_rules3</strong></a>(p)</dt><dd><tt>rules&nbsp;:&nbsp;rules&nbsp;'\n'</tt></dd></dl>
+ <dl><dt><a name="-p_rules4"><strong>p_rules4</strong></a>(p)</dt><dd><tt>rules&nbsp;:&nbsp;rules&nbsp;error&nbsp;'\n'</tt></dd></dl>
+ <dl><dt><a name="-p_spec1"><strong>p_spec1</strong></a>(p)</dt><dd><tt>spec&nbsp;:&nbsp;decls&nbsp;PPERCENT&nbsp;rules</tt></dd></dl>
+ <dl><dt><a name="-p_spec2"><strong>p_spec2</strong></a>(p)</dt><dd><tt>spec&nbsp;:&nbsp;decls</tt></dd></dl>
+ <dl><dt><a name="-p_tree1"><strong>p_tree1</strong></a>(p)</dt><dd><tt>tree&nbsp;:&nbsp;ID</tt></dd></dl>
+ <dl><dt><a name="-p_tree2"><strong>p_tree2</strong></a>(p)</dt><dd><tt>tree&nbsp;:&nbsp;ID&nbsp;'('&nbsp;tree&nbsp;')'</tt></dd></dl>
+ <dl><dt><a name="-p_tree3"><strong>p_tree3</strong></a>(p)</dt><dd><tt>tree&nbsp;:&nbsp;ID&nbsp;'('&nbsp;tree&nbsp;','&nbsp;tree&nbsp;')'</tt></dd></dl>
+ <dl><dt><a name="-t_ID"><strong>t_ID</strong></a>(t)</dt><dd><tt>[a-zA-Z_][a-zA-Z_0-9]*</tt></dd></dl>
+ <dl><dt><a name="-t_INT"><strong>t_INT</strong></a>(t)</dt><dd><tt>\d+</tt></dd></dl>
+ <dl><dt><a name="-t_NEWLINE"><strong>t_NEWLINE</strong></a>(t)</dt><dd><tt>\n</tt></dd></dl>
+ <dl><dt><a name="-t_TERMINAL"><strong>t_TERMINAL</strong></a>(t)</dt><dd><tt>%term</tt></dd></dl>
+ <dl><dt><a name="-t_error"><strong>t_error</strong></a>(t)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Iflag</strong> = 0<br>
+<strong>NONTERM</strong> = 2<br>
+<strong>TERM</strong> = 1<br>
+<strong>Tflag</strong> = 0<br>
+<strong>errcnt</strong> = 0<br>
+<strong>infp</strong> = None<br>
+<strong>literals</strong> = '<font color="#c040c0">\n</font>(),;=:'<br>
+<strong>maxcost</strong> = 32767<br>
+<strong>nts</strong> = []<br>
+<strong>outfp</strong> = None<br>
+<strong>prefix</strong> = 'burm'<br>
+<strong>rules</strong> = []<br>
+<strong>t_PPERCENT</strong> = '%%'<br>
+<strong>t_START</strong> = '%start'<br>
+<strong>t_ignore</strong> = ' <font color="#c040c0">\x0c\t\r</font>'<br>
+<strong>table</strong> = {}<br>
+<strong>terms</strong> = []<br>
+<strong>tokens</strong> = ('TERMINAL', 'START', 'PPERCENT', 'INT', 'ID')</td></tr></table>
+</body></html>

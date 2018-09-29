@@ -1,0 +1,91 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module cyburg</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>cyburg</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/bhavan/Desktop/BTP/cyburg/cyburg.py">/home/bhavan/Desktop/BTP/cyburg/cyburg.py</a></font></td></tr></table>
+    <p><tt>cyburg&nbsp;--&nbsp;A&nbsp;python&nbsp;3&nbsp;implementation&nbsp;of&nbsp;iburg&nbsp;which&nbsp;is&nbsp;originally&nbsp;written&nbsp;in&nbsp;c<br>
+This&nbsp;is&nbsp;the&nbsp;root&nbsp;file<br>
+Usage:&nbsp;python3&nbsp;cyburg.py&nbsp;[-T&nbsp;|&nbsp;-I&nbsp;|&nbsp;-p&nbsp;prefix&nbsp;|&nbsp;-maxcost=ddd&nbsp;]...&nbsp;[&nbsp;[&nbsp;input&nbsp;]&nbsp;output</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="globals.html">globals</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-ckreach"><strong>ckreach</strong></a>(p)</dt><dd><tt>mark&nbsp;all&nbsp;non-terminals&nbsp;reachable&nbsp;from&nbsp;p</tt></dd></dl>
+ <dl><dt><a name="-computekids"><strong>computekids</strong></a>(t, v, kidnum)</dt><dd><tt>compute&nbsp;paths&nbsp;to&nbsp;kids&nbsp;in&nbsp;tree&nbsp;t</tt></dd></dl>
+ <dl><dt><a name="-computents"><strong>computents</strong></a>(t)</dt><dd><tt>fill&nbsp;in&nbsp;ret&nbsp;with&nbsp;burm_nts&nbsp;vector&nbsp;for&nbsp;tree&nbsp;t</tt></dd></dl>
+ <dl><dt><a name="-copyfooter"><strong>copyfooter</strong></a>()</dt><dd><tt>copy&nbsp;the&nbsp;footer&nbsp;of&nbsp;the&nbsp;input&nbsp;file&nbsp;to&nbsp;output&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-copyheader"><strong>copyheader</strong></a>()</dt><dd><tt>copy&nbsp;the&nbsp;header&nbsp;of&nbsp;the&nbsp;input&nbsp;file&nbsp;to&nbsp;output&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-declared"><strong>declared</strong></a>(name)</dt></dl>
+ <dl><dt><a name="-emitcase"><strong>emitcase</strong></a>(p)</dt><dd><tt>emit&nbsp;one&nbsp;case&nbsp;in&nbsp;function&nbsp;state</tt></dd></dl>
+ <dl><dt><a name="-emitclosure"><strong>emitclosure</strong></a>(nts)</dt><dd><tt>emit&nbsp;the&nbsp;closure&nbsp;functions</tt></dd></dl>
+ <dl><dt><a name="-emitcost"><strong>emitcost</strong></a>(t, v)</dt><dd><tt>emit&nbsp;cost&nbsp;computation&nbsp;for&nbsp;tree&nbsp;t</tt></dd></dl>
+ <dl><dt><a name="-emitdefs"><strong>emitdefs</strong></a>(nts, ntnumber)</dt><dd><tt>emit&nbsp;non-terminal&nbsp;defines&nbsp;and&nbsp;data&nbsp;structures</tt></dd></dl>
+ <dl><dt><a name="-emitfuncs"><strong>emitfuncs</strong></a>()</dt><dd><tt>emit&nbsp;functions&nbsp;to&nbsp;access&nbsp;node&nbsp;fields</tt></dd></dl>
+ <dl><dt><a name="-emitheader"><strong>emitheader</strong></a>()</dt><dd><tt>emit&nbsp;initial&nbsp;definitions</tt></dd></dl>
+ <dl><dt><a name="-emitkids"><strong>emitkids</strong></a>(rules)</dt><dd><tt>emit&nbsp;burm_kids</tt></dd></dl>
+ <dl><dt><a name="-emitlabel"><strong>emitlabel</strong></a>(start)</dt><dd><tt>emit&nbsp;the&nbsp;labelling&nbsp;functions</tt></dd></dl>
+ <dl><dt><a name="-emitnts"><strong>emitnts</strong></a>(rules)</dt><dd><tt>emit&nbsp;burm_nts&nbsp;ragged&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-emitrecord"><strong>emitrecord</strong></a>(prefix, r, cost)</dt><dd><tt>emit&nbsp;code&nbsp;that&nbsp;tests&nbsp;for&nbsp;a&nbsp;winning&nbsp;match&nbsp;of&nbsp;rule&nbsp;r</tt></dd></dl>
+ <dl><dt><a name="-emitrule"><strong>emitrule</strong></a>(nts)</dt><dd><tt>emit&nbsp;decoding&nbsp;vectors&nbsp;and&nbsp;burm_rule</tt></dd></dl>
+ <dl><dt><a name="-emitstate"><strong>emitstate</strong></a>(terms, start, ntnumber)</dt><dd><tt>emit&nbsp;state&nbsp;function</tt></dd></dl>
+ <dl><dt><a name="-emitstring"><strong>emitstring</strong></a>(rules)</dt><dd><tt>emit&nbsp;array&nbsp;of&nbsp;rules&nbsp;and&nbsp;costs</tt></dd></dl>
+ <dl><dt><a name="-emitstruct"><strong>emitstruct</strong></a>(nts, ntnumber)</dt><dd><tt>emit&nbsp;the&nbsp;definition&nbsp;of&nbsp;the&nbsp;state&nbsp;structure</tt></dd></dl>
+ <dl><dt><a name="-emitterms"><strong>emitterms</strong></a>(terms)</dt><dd><tt>emit&nbsp;terminal&nbsp;data&nbsp;structures</tt></dd></dl>
+ <dl><dt><a name="-emittest"><strong>emittest</strong></a>(t, v, suffix, hasParent<font color="#909090">=False</font>)</dt><dd><tt>emit&nbsp;clause&nbsp;for&nbsp;testing&nbsp;a&nbsp;match</tt></dd></dl>
+ <dl><dt><a name="-getntnumber"><strong>getntnumber</strong></a>()</dt></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>main&nbsp;function</tt></dd></dl>
+ <dl><dt><a name="-nonterm"><strong>nonterm</strong></a>(name)</dt><dd><tt>create&nbsp;a&nbsp;new&nbsp;terminal&nbsp;name,&nbsp;if&nbsp;necessary</tt></dd></dl>
+ <dl><dt><a name="-printf"><strong>printf</strong></a>(msg, *args)</dt><dd><tt>prints&nbsp;formatted&nbsp;output</tt></dd></dl>
+ <dl><dt><a name="-reach"><strong>reach</strong></a>(t)</dt><dd><tt>mark&nbsp;all&nbsp;non-terminals&nbsp;in&nbsp;tree&nbsp;t&nbsp;as&nbsp;reachable</tt></dd></dl>
+ <dl><dt><a name="-rule"><strong>rule</strong></a>(lhs, rhs, ern, cost)</dt><dd><tt>create&nbsp;&amp;&nbsp;initialize&nbsp;a&nbsp;rule&nbsp;with&nbsp;the&nbsp;given&nbsp;fields</tt></dd></dl>
+ <dl><dt><a name="-term"><strong>term</strong></a>(name, esn)</dt><dd><tt>create&nbsp;a&nbsp;new&nbsp;terminal&nbsp;name&nbsp;with&nbsp;external&nbsp;symbol&nbsp;number&nbsp;esn</tt></dd></dl>
+ <dl><dt><a name="-tree"><strong>tree</strong></a>(name, left<font color="#909090">=None</font>, right<font color="#909090">=None</font>)</dt><dd><tt>create&nbsp;&amp;&nbsp;initialize&nbsp;a&nbsp;tree&nbsp;node&nbsp;with&nbsp;the&nbsp;given&nbsp;fields</tt></dd></dl>
+ <dl><dt><a name="-yyerror"><strong>yyerror</strong></a>(msg, *args)</dt><dd><tt>prints&nbsp;errors&nbsp;to&nbsp;the&nbsp;stdout&nbsp;along&nbsp;with&nbsp;the&nbsp;lineno</tt></dd></dl>
+ <dl><dt><a name="-yyparse"><strong>yyparse</strong></a>()</dt><dd><tt>parses&nbsp;the&nbsp;tree&nbsp;grammar&nbsp;and&nbsp;stores&nbsp;all&nbsp;the&nbsp;terms,&nbsp;nts&nbsp;and&nbsp;rules</tt></dd></dl>
+ <dl><dt><a name="-yywarn"><strong>yywarn</strong></a>(msg, *args)</dt><dd><tt>prints&nbsp;warnings&nbsp;to&nbsp;the&nbsp;stdout&nbsp;along&nbsp;with&nbsp;the&nbsp;lineno</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Iflag</strong> = 0<br>
+<strong>NONTERM</strong> = 2<br>
+<strong>TERM</strong> = 1<br>
+<strong>Tflag</strong> = 0<br>
+<strong>errcnt</strong> = 0<br>
+<strong>infp</strong> = None<br>
+<strong>literals</strong> = '<font color="#c040c0">\n</font>(),;=:'<br>
+<strong>maxcost</strong> = 32767<br>
+<strong>nts</strong> = []<br>
+<strong>outfp</strong> = None<br>
+<strong>prefix</strong> = 'burm'<br>
+<strong>rules</strong> = []<br>
+<strong>t_PPERCENT</strong> = '%%'<br>
+<strong>t_START</strong> = '%start'<br>
+<strong>t_ignore</strong> = ' <font color="#c040c0">\x0c\t\r</font>'<br>
+<strong>table</strong> = {}<br>
+<strong>terms</strong> = []<br>
+<strong>tokens</strong> = ('TERMINAL', 'START', 'PPERCENT', 'INT', 'ID')</td></tr></table>
+</body></html>

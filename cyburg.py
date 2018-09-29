@@ -1,3 +1,9 @@
+"""
+cyburg -- A python 3 implementation of iburg which is originally written in c
+This is the root file
+Usage: python3 cyburg.py [-T | -I | -p prefix | -maxcost=ddd ]... [ [ input ] output
+"""
+
 import sys
 import math
 import globals
@@ -23,14 +29,23 @@ errcnt = 0
 
 
 def yywarn(msg, *args):
+	"""
+	prints warnings to the stdout along with the lineno
+	"""
 	print("line %d: warning: " % globals.yylineno + msg % args)
 
 def yyerror(msg, *args):
+	"""
+	prints errors to the stdout along with the lineno
+	"""
 	print("line %d: " % globals.yylineno +msg % args)
 	global errcnt
 	errcnt += 1
 
 def copyheader():
+	"""
+	copy the header of the input file to output file
+	"""
 	prev_pos = infp.tell()
 	buf = infp.readline()
 	if not buf:
@@ -53,6 +68,9 @@ def copyheader():
 	infp.seek(prev_pos)
 
 def yyparse():
+	"""
+	parses the tree grammar and stores all the terms, nts and rules
+	"""
 	globals.yylineno += 1
 	ppercent = 0
 	data = ""
@@ -77,6 +95,9 @@ def yyparse():
 	globals.parser.parse(data)
 
 def copyfooter():
+	"""
+	copy the footer of the input file to output file
+	"""
 	global yylineno
 	outfp.write("\n")
 	while True:
@@ -96,8 +117,8 @@ def declared(name):
 	else:
 		return None
 
-# term - create a new terminal name with external symbol number esn
 def term(name,esn):
+	"""create a new terminal name with external symbol number esn"""
 	p = declared(name)
 	if p:
 		yyerror("redefinition of terminal '%s'", name)
@@ -113,8 +134,8 @@ def term(name,esn):
 	terms.append(p)
 	return p
 
-# nonterm - create a new terminal name, if necessary
 def nonterm(name):
+	"""create a new terminal name, if necessary"""
 	p = declared(name)
 	if p:
 		p = table[name]
@@ -133,8 +154,8 @@ def nonterm(name):
 	nts.append(p)
 	return p
 
-# tree - create & initialize a tree node with the given fields
 def tree(name,left=None,right=None):
+	"""create & initialize a tree node with the given fields"""
 	arity = 0
 	if left :
 		arity += 1
@@ -169,6 +190,7 @@ def tree(name,left=None,right=None):
 	return t
 
 def rule(lhs,rhs,ern,cost):
+	"""create & initialize a rule with the given fields"""
 	r = Rule()
 	p = rhs.op
 	nt = nonterm(lhs)
@@ -190,8 +212,8 @@ def rule(lhs,rhs,ern,cost):
 	rules.append(r)
 	return r
 
-# print - formatted output
 def printf(msg, *args):
+	"""prints formatted output"""
 	class Count:
 		counter=-1
 	counter = Count()
@@ -232,8 +254,8 @@ def printf(msg, *args):
 			outfp.write(msg[i])
 		i += 1
 		
-# reach - mark all non-terminals in tree t as reachable
 def reach(t):
+	""" mark all non-terminals in tree t as reachable"""
 	p = t.op
 	if p.kind == NONTERM:
 		if not p.reached:
@@ -244,15 +266,14 @@ def reach(t):
 		reach(t.right)
 
 
-# ckreach - mark all non-terminals reachable from p
 def ckreach(p):
+	"""mark all non-terminals reachable from p"""
 	p.reached = 1
 	for r in p.rules:
 		reach(r.rhs)
 
-
-# emitheader - emit initial definitions
 def emitheader():
+	"""emit initial definitions"""
 	printf("#include <limits.h>\n#include <stdlib.h>\n");
 	printf("#ifndef STATE_TYPE\n#define STATE_TYPE int\n#endif\n");
 	printf("#ifndef ALLOC\n#define ALLOC(n) malloc(n)\n#endif\n"
@@ -260,8 +281,8 @@ def emitheader():
 	if Tflag:
 		printf("static NODEPTR_TYPE %Pnp;\n\n")
 
-# emitdefs - emit non-terminal defines and data structures
 def emitdefs(nts, ntnumber):
+	"""emit non-terminal defines and data structures"""
 	for p in nts:
 		printf("#define %P%S_NT %d\n", p, p.number)
 	printf("int %Pmax_nt = %d;\n\n", ntnumber)
@@ -272,8 +293,8 @@ def emitdefs(nts, ntnumber):
 			printf("%1\"%S\",\n", p);
 		printf("%10\n};\n\n");
 
-# emitstruct - emit the definition of the state structure
 def emitstruct(nts, ntnumber):
+	"""emit the definition of the state structure"""
 	printf("struct %Pstate {\n%1int op;\n%1struct %Pstate *left, *right;\n"
 "%1short cost[%d];\n%1struct {\n", ntnumber + 1)
 	for nonterm in nts:
@@ -281,8 +302,8 @@ def emitstruct(nts, ntnumber):
 		printf("%2unsigned %P%S:%d;\n", nonterm, math.floor(math.log(n,2))+1)
 	printf("%1} rule;\n};\n\n")
 
-# computents - fill in ret with burm_nts vector for tree t
 def computents(t):
+	"""fill in ret with burm_nts vector for tree t"""
 	ret = ""
 	if t:
 		p = t.op;
@@ -292,8 +313,8 @@ def computents(t):
 		ret += computents(t.right)
 	return ret;
 
-# emitnts - emit burm_nts ragged array
 def emitnts(rules):
+	"""emit burm_nts ragged array"""
 	existing = {}
 	i=0
 	for r in rules:
@@ -312,8 +333,8 @@ def emitnts(rules):
 		j+=1
 	printf("};\n\n");
 
-# emitterms - emit terminal data structures 
 def emitterms(terms):
+	"""emit terminal data structures"""
 	printf("char %Parity[] = {\n");
 	j=0
 	for p in terms:
@@ -338,9 +359,8 @@ def emitterms(terms):
 		printf("};\n\n");
 	
 
-# emitstring - emit array of rules and costs
 def emitstring(rules):
-	
+	"""emit array of rules and costs"""
 
 	printf("short %Pcost[][4] = {\n");
 	j=0
@@ -361,9 +381,8 @@ def emitstring(rules):
 
 	printf("};\n\n")
 
-# emitrule - emit decoding vectors and burm_rule
 def emitrule(nts):
-
+	"""emit decoding vectors and burm_rule"""
 	for p in nts:
 		printf("static short %Pdecode_%S[] = {\n%10,\n", p)
 		for r in p.rules:
@@ -377,8 +396,8 @@ def emitrule(nts):
 "%1return %Pdecode_%S[((struct %Pstate *)state)->rule.%P%S];\n", p, p, p);
 	printf("%1default:\n%2%Passert(0, PANIC(\"Bad goal nonterminal %%d in %Prule\\n\", goalnt));\n%1}\n%1return 0;\n}\n\n");
 
-# emitrecord - emit code that tests for a winning match of rule r
 def emitrecord(prefix, r, cost):
+	"""emit code that tests for a winning match of rule r"""
 	printf("%sif (", prefix);
 	
 	if Tflag: printf("%Ptrace(%Pnp, %d, c + %d, p->cost[%P%S_NT]), ",r.ern, cost, r.lhs);
@@ -391,8 +410,8 @@ def emitrecord(prefix, r, cost):
 	printf("%s}\n", prefix);
 
 
-# emitclosure - emit the closure functions
 def emitclosure(nts):
+	"""emit the closure functions"""
 	for p in nts:
 		if len(p.chain):
 			printf("static void %Pclosure_%S(struct %Pstate *, int);\n", p);
@@ -406,8 +425,8 @@ def emitclosure(nts):
 	printf("\n")
 
 
-# emittest - emit clause for testing a match
 def emittest(t, v, suffix, hasParent=False):
+	"""emit clause for testing a match"""
 	if t is None:
 		print("Internal Error, Empty Tree Passed to emittest\n")
 		return
@@ -420,8 +439,8 @@ def emittest(t, v, suffix, hasParent=False):
 		if t.right: emittest(t.right,"%s->right"%v, suffix, True);
 
 
-# emitcase - emit one case in function state
 def emitcase(p):
+	"""emit one case in function state"""
 	if p.kind==NONTERM:
 		print("Internal Error: emitcase being called for a non terminal %s"%p.name)
 		return
@@ -448,8 +467,8 @@ def emitcase(p):
 	printf("%2break;\n");
 
 
-# emitcost - emit cost computation for tree t
 def emitcost(t, v):
+	"""emit cost computation for tree t"""
 	p = t.op
 	if p.kind == TERM:
 		if t.left:
@@ -460,8 +479,8 @@ def emitcost(t, v):
 		printf("%s->cost[%P%S_NT] + ", v, p)
 
 
-# emitstate - emit state function
 def emitstate(terms, start, ntnumber):
+	"""emit state function"""
 	printf("STATE_TYPE %Pstate(int op, STATE_TYPE left, STATE_TYPE right) {\n%1int c;\n"
 "%1struct %Pstate *p, *l = (struct %Pstate *)left,\n"
 "%2*r = (struct %Pstate *)right;\n\n%1assert(sizeof (STATE_TYPE) >= sizeof (void *));\n%1");
@@ -478,8 +497,8 @@ def emitstate(terms, start, ntnumber):
 "%1return (STATE_TYPE)p;\n}\n\n")
 
 
-# emitlabel - emit the labelling functions
 def emitlabel(start):
+	"""emit the labelling functions"""
 	printf("static void %Plabel1(NODEPTR_TYPE p) {\n"
 "%1%Passert(p, PANIC(\"NULL tree in %Plabel\\n\"));\n"
 "%1switch (%Parity[OP_LABEL(p)]) {\n"
@@ -504,9 +523,8 @@ def emitlabel(start):
 "}\n\n", start)
 
 
-
-# computekids - compute paths to kids in tree t
 def computekids(t, v, kidnum):
+	"""compute paths to kids in tree t"""
 	p = t.op;
 	ret = ""
 	if p.kind == NONTERM:
@@ -518,8 +536,8 @@ def computekids(t, v, kidnum):
 			ret += computekids(t.right, "RIGHT_CHILD(%s)" % v, kidnum)
 	return ret
 
-# emitkids - emit burm_kids
 def emitkids(rules):
+	"""emit burm_kids"""
 	class KidCount:
 		count=0
 	existing = {}
@@ -541,9 +559,8 @@ def emitkids(rules):
 	printf("%1default:\n%2%Passert(0, PANIC(\"Bad external rule number %%d in %Pkids\\n\", eruleno));\n%1}\n%1return kids;\n}\n\n");
 
 
-
-# emitfuncs - emit functions to access node fields
 def emitfuncs():
+	"""emit functions to access node fields"""
 	printf("int %Pop_label(NODEPTR_TYPE p) {\n"
 "%1%Passert(p, PANIC(\"NULL tree in %Pop_label\\n\"));\n"
 "%1return OP_LABEL(p);\n}\n\n");
@@ -557,9 +574,8 @@ def emitfuncs():
 "%1%Passert(0, PANIC(\"Bad index %%d in %Pchild\\n\", index));\n%1return 0;\n}\n\n")
 
 
-
-
 def main():
+	"""main function"""
 	global infp,outfp,Iflag,Tflag
 	for i in range(1,len(sys.argv)):
 		arg = sys.argv[i]
